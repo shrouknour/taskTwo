@@ -1,0 +1,254 @@
+<!-- <input type="number" #myid (keyup.enter)="getid(myid.value)"> -->
+<div class="continer">
+  <form [formGroup]="myform" (ngSubmit)="ngsubmit()">
+      <div class="mb-3">
+        <label class="form-label">Name</label><br>
+        <input
+          type="text"
+          formControlName="name"
+          required
+        />
+      </div>
+      <p
+        *ngIf="name?.touched && name?.errors?.['required']"
+        class="alert alert-danger"
+      >
+        the Name is required
+      </p>
+      <div class="mb-3">
+        <label for="exampleInputuserName" class="form-label">userName</label
+        ><br />
+        <input
+          type="text"
+          formControlName="username"
+          id="exampleInputuserName"
+          required
+        />
+        <p
+          *ngIf="userName?.touched && userName?.errors?.['required']"
+          class="alert alert-danger"
+        >
+          the userName is required
+        </p>
+        <p
+          *ngIf="userName?.touched && userName?.errors?.['canNotContainSpase']"
+          class="alert alert-danger"
+        >
+          canNotContainSpase
+        </p>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputemail" class="form-label">email</label><br />
+        <input
+          type="email"
+          formControlName="email"
+          id="exampleInputemail"
+          required
+          email
+        />
+        <p
+          *ngIf="emaill?.touched && emaill?.errors?.['required']"
+          class="alert alert-danger"
+        >
+          the input is required
+        </p>
+        <p
+          *ngIf="emaill?.touched && emaill?.errors?.['email']"
+          class="alert alert-danger"
+        >
+          sh@gmail
+        </p>
+      </div>
+      <div>
+
+        <div formGroupName="address">
+          <div class="mb-3">
+            <label for="exampleInputaddress" class="form-label">suite </label>
+            <br />
+            <input
+              type="text"
+              formControlName="suite"
+              id="exampleInputaddress"
+              required
+            />
+            <p
+              *ngIf="suite?.touched && suite?.errors?.['required']"
+              class="alert alert-danger"
+            >
+              the input is required
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputaddress" class="form-label">city </label>
+            <br />
+            <input
+              type="text"
+              formControlName="city"
+              id="exampleInputaddress"
+              required
+            />
+            <p
+              *ngIf="city?.touched && city?.errors?.['required']"
+              class="alert alert-danger"
+            >
+              the input is required
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputaddress" class="form-label">street </label>
+            <br />
+            <input
+              type="text"
+              formControlName="street"
+              id="exampleInputaddress"
+              required
+            />
+            <p
+              *ngIf="street?.touched && street?.errors?.['required']"
+              class="alert alert-danger"
+            >
+              the input is required
+            </p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputaddress" class="form-label">zipcode </label>
+            ><br />
+            <input
+              type="text"
+              formControlName="zipcode"
+              id="exampleInputaddress"
+              required
+            />
+            <p
+              *ngIf="zipcode?.touched && zipcode?.errors?.['required']"
+              class="alert alert-danger"
+            >
+              the input is required
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputphone" class="form-label">phone</label><br />
+          <input
+            type="text"
+            formControlName="phone"
+            id="exampleInputphone"
+            required
+            minlength="11"
+            maxlength="11"
+          />
+          <p
+            *ngIf="phone?.touched && phone?.errors?.['required']"
+            class="alert alert-danger"
+          >
+            the input is required
+          </p>
+          <p
+          *ngIf="phone?.touched && phone?.errors?.['shouldbestart01']"
+          class="alert alert-danger"
+        >
+        shouldbestart01
+        </p>
+          <p
+            *ngIf="phone?.touched && phone?.errors?.['minlength']"
+            class="alert alert-danger"
+          >
+            the phone should be minimum 11
+          </p>
+          <p
+            *ngIf="phone?.touched && phone?.errors?.['maxlength']"
+            class="alert alert-danger"
+          >
+            the phone should be maxmum 11
+          </p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputwebsite" class="form-label">website</label
+        ><br />
+        <input
+          type="text"
+          formControlName="website"
+          id="exampleInputwebsite"
+          required
+        />
+        <p
+          *ngIf="website?.touched && website?.errors?.['required']"
+          class="alert alert-danger"
+        >
+          the input is required
+        </p>
+      </div>
+      <div formGroupName="company">
+        <div class="mb-3">
+          <label for="exampleInputcompanyName" class="form-label"
+            >company Name</label
+          ><br />
+          <input
+            type="text"
+            formControlName="name"
+            id="exampleInputcompanyName"
+            required
+          />
+          <p
+            *ngIf="companyName?.touched && companyName?.errors?.['required']"
+            class="alert alert-danger"
+          >
+            the inputName is required
+          </p>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+
+        (click)="addUser()"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+
+  </form>
+  <!-- <div>{{ myform.value | json }}</div> -->
+</div>
+
+<div class="continer">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">userName</th>
+        <th scope="col">email</th>
+        <th scope="col">address</th>
+        <th scope="col">phone</th>
+        <th scope="col">website</th>
+        <th scope="col">companyName</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of users; index as i">
+        <th scope="col">{{ i + 1 }}</th>
+        <th scope="col">{{ item.name }}</th>
+        <th scope="col">{{ item.username }}</th>
+        <th scope="col">{{ item.email }}</th>
+        <th scope="col">{{ item.address | json }}</th>
+        <th scope="col">{{ item.phone }}</th>
+        <th scope="col">{{ item.website }}</th>
+        <th scope="col">{{ item.company | json }}</th>
+        <th scope="col">
+          <button class="btn btn-danger" (click)="deletTask(i)">delete</button>
+        </th>
+        <th scope="col"><button class="btn btn-primary" (click)="updateUser(i,user)" >update </button></th>
+      </tr>
+      <tr *ngIf="users.length == 0 && !Ialoading" class="alert alert-danger">
+        <td>no tasks</td>
+      </tr>
+
+      <tr *ngIf="Ialoading">
+        <td>loading....</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
