@@ -195,6 +195,7 @@ export class ApiComponent implements OnInit {
       next:(response:any)=>{
         this.users[id] = response;
                 },
+                //this.user[]
                 error:  (err:any)=>{
                   alert("Error");
                 }
